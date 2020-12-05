@@ -7,6 +7,7 @@ using ClinicApp.Forms;
 using ClinicApp;
 using ClinicApp.Models;
 using ClinicApp.DbContexts;
+using System.Configuration;
 
 namespace ClinicApp
 {

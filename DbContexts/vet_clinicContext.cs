@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using ClinicApp.Models;
+using System.Configuration;
 
 namespace ClinicApp.DbContexts
 {
@@ -24,15 +25,12 @@ namespace ClinicApp.DbContexts
         public virtual DbSet<UsersPass> UsersPass { get; set; }
         public virtual DbSet<Vactination> Vactination { get; set; }
         public virtual DbSet<Veterinarian> Veterinarian { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
+  
+            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=localhost;uid=root;pwd=123456789Q;database=vet_clinic", x => x.ServerVersion("8.0.22-mysql"));
+                optionsBuilder.UseMySql(ConfigurationManager.ConnectionStrings["BloggingDatabase"].ConnectionString, x => x.ServerVersion("8.0.22-mysql"));
             }
-        }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
